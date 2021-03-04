@@ -31,7 +31,8 @@ for (var row = 0; row < 3; row++) {
                     this.className += ' o';
                     turn = 'x';
                 }
-                rowCheckForWin()
+                rowCheckForWin();
+                colCheckForWin();
             }
             
         });
@@ -64,11 +65,23 @@ function rowCheckForWin() {
 
 function colCheckForWin() {
     for (var y=0; y<3; y++){
+        //makes an array for the current col
         var checkedCol = []
         for (var x=0; x<3; x++){
-            checkedCol.push(board[x][0])
+            checkedCol.push(board[x][y])
         }
-        console.log(checkedCol)
+        //checks for win in each col
+        if (checkedCol[0].className==checkedCol[1].className
+        && checkedCol[1].className==checkedCol[2].className){
+            for (var i=0; i<3; i++){
+                if (checkedCol[i].className != 'blank'){
+                    checkedCol[i].className += ' winner'
+                }
+            }
+            //makes sure space isn't empty
+            
+        }
+
     }  
 }
     
