@@ -14,4 +14,13 @@
 
 .winner {
     background-color: red;
+    width: 150px;
+    height: 150px;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;;
+    /* display: fixed; */
+    display: inline-block;
+    text-align: center;
+    margin: 2px;
 }
