@@ -1,6 +1,7 @@
 var boardElement = document.getElementById('board');
 var board = [];
 var turn = 'x';
+initGame();
 
 // builds initial board and gives squares functionality
 function initGame() {
@@ -125,5 +126,11 @@ function diagCheckForWin(){
     
 
 }
+
+// reset the board state 
+function resetGame(){
+    boardElement.innerHTML = null;
+    turn = 'x'
+    initGame()
+}
     
-initGame()
