@@ -1,6 +1,14 @@
+/*
+TODO: 
+    add a check for tie game
+    
+
+*/
+
 var boardElement = document.getElementById('board');
 var board = [];
-var turn = 'x';
+var player = 1;
+var winState = false
 initGame();
 
 // builds initial board and gives squares functionality
@@ -28,29 +36,25 @@ function initGame() {
                 // if statement makes sure the spot is not taken
                 if (this.className == 'blank'){
                     // checks who's turn it is and assigns proper image
-                    if (turn == 'x'){
+                    if (player == 1){
                         this.src = 'images/x.png';
                         this.className = 'x';
-                        turn = 'o';
+                        player = 2;
                     } else {
                         this.src = 'images/o.png';
                         this.className = 'o';
-                        turn = 'x';
+                        player = 1;
                     }
-                    // rowCheckForWin();
-                    // colCheckForWin();
+
                     boardStateCheck()
                 }
-                
             });
             // array that you can change
             board[row][col] = slot;
             // appends to the html document
             boardElement.appendChild(slot);
         }//end of col
-        
     }//end of row
-
 }
 
 //runs all board checks
@@ -58,6 +62,7 @@ function boardStateCheck() {
     rowCheckForWin();
     colCheckForWin();
     diagCheckForWin();
+    lockBoard();
 }
 
 // checks for a win on each row
@@ -73,8 +78,8 @@ function rowCheckForWin() {
                 // makes sure the space isn't empty
                     if (checkedRow[j].className != 'blank'){
                         checkedRow[j].className = 'winner'
-                    }
-                    
+                        winState = true;
+                    }                 
                 }// end of j
             }
     }//end of i
@@ -92,14 +97,13 @@ function colCheckForWin() {
         if (checkedCol[0].className==checkedCol[1].className
         && checkedCol[1].className==checkedCol[2].className){
             for (var i=0; i<3; i++){
+                //makes sure space isn't empty
                 if (checkedCol[i].className != 'blank'){
                     checkedCol[i].className = 'winner'
+                    winState = true;
                 }
-            }
-            //makes sure space isn't empty
-            
+            }   
         }
-
     }  
 }
 
@@ -117,20 +121,26 @@ function diagCheckForWin(){
                 for (var i=0; i<3; i++){
                     if (bothDiags[x][i].className != 'blank'){
                         bothDiags[x][i].className = 'winner'
+                        winState = true
                     }
                 }//end of i
             }
     }//end of x
-
-    
-    
-
 }
 
 // reset the board state 
 function resetGame(){
     boardElement.innerHTML = null;
-    turn = 'x'
+    winState = false
     initGame()
 }
     
+//locks the board in case of win or tie
+function lockBoard() {
+    if (winState == true){
+        var slots = document.querySelectorAll('img.blank, img.x, img.o')
+        for (i=0; i<slots.length; i++){
+            slots[i].className = 'loser'
+        }
+    }
+}
