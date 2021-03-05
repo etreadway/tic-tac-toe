@@ -62,6 +62,7 @@ function boardStateCheck() {
     rowCheckForWin();
     colCheckForWin();
     diagCheckForWin();
+    checkForDraw();
     lockBoard();
 }
 
@@ -135,12 +136,27 @@ function resetGame(){
     initGame()
 }
     
-//locks the board in case of win or tie
+// locks the board in case of win
 function lockBoard() {
     if (winState == true){
+        // grabs all non-winning spots and makes them losing spots
         var slots = document.querySelectorAll('img.blank, img.x, img.o')
         for (i=0; i<slots.length; i++){
-            slots[i].className = 'loser'
+            slots[i].className = 'loser';
+        }
+    }
+}
+
+// checks the board for a draw
+function checkForDraw() {
+    var emptySpaces = document.getElementsByClassName('blank')
+    if (winState == false){
+        //checking to make sure no spaces are left
+        if (emptySpaces.length < 1){
+            var slots = document.querySelectorAll('img.x, img.o');
+            for (i=0; i<9; i++){
+                slots[i].className = 'draw';
+            }
         }
     }
 }

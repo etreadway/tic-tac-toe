@@ -17,8 +17,7 @@
     height: 150px;
     border-color: black;
     border-style: solid;
-    border-width: 2px;;
-    /* display: fixed; */
+    border-width: 2px;
     display: inline-block;
     text-align: center;
     margin: 2px;
@@ -30,11 +29,21 @@
     height: 150px;
     border-color: black;
     border-style: solid;
-    border-width: 2px;;
-    /* display: fixed; */
+    border-width: 2px;
     display: inline-block;
     text-align: center;
     margin: 2px;
 }
 
+.draw {
+    background-color: blue;
+    width: 150px;
+    height: 150px;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    display: inline-block;
+    text-align: center;
+    margin: 2px;
+}
 
