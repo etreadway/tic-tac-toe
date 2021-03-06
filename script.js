@@ -9,7 +9,13 @@ var boardElement = document.getElementById('board');
 var board = [];
 var player = 1;
 var winState = false
+var player1ScoreObj = document.getElementById('player1')
+var player1Score = 5
+
 initGame();
+
+player1ScoreObj.innerHTML = player1Score
+
 
 // builds initial board and gives squares functionality
 function initGame() {
