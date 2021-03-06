@@ -3,12 +3,26 @@ var boardElement = document.getElementById('board');
 var board = [];
 var player = 1;
 var winState = false
+var player1Score = 0
 var player1ScoreObj = document.getElementById('player1')
-var player1Score = 5
-
+var player2Score = 0
+var player2ScoreObj = document.getElementById('player2')
 initGame();
 
 player1ScoreObj.innerHTML = player1Score
+player2ScoreObj.innerHTML = player2Score
+
+function scoreUpdate() {    //function to update score
+    if( winState==true) {   //will check if someone owon
+        if(player==2) {     // 
+            player1Score++;
+        } else {
+            player2Score++;
+        }
+    }
+    player1ScoreObj.innerHTML = player1Score
+    player2ScoreObj.innerHTML = player2Score
+}
 
 
 // builds initial board and gives squares functionality
@@ -64,6 +78,7 @@ function boardStateCheck() {
     diagCheckForWin();
     checkForDraw();
     lockBoard();
+    scoreUpdate();
 }
 
 // checks for a win on each row
