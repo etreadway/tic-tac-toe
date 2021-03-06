@@ -1,9 +1,3 @@
-/*
-TODO: 
-    add a check for tie game
-    
-
-*/
 
 var boardElement = document.getElementById('board');
 var board = [];
