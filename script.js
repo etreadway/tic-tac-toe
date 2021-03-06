@@ -150,6 +150,8 @@ function resetGame(){
     winState = false
     initGame()
 }
+
+
     
 // locks the board in case of win
 function lockBoard() {
